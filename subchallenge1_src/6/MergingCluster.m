@@ -1,0 +1,15 @@
+clear;
+n2c1=importdata('6_0.6_1.n2c');
+n2c2=importdata('6_0.6.n2c');
+n2c3=importdata('6.n2c');
+[a1,~]=ismember(n2c2(:,1),n2c1(:,1));
+n2c2(a1,:)=[];
+[a1,~]=ismember(n2c3(:,1),[n2c1(:,1);n2c2(:,1)]);
+n2c3(a1,:)=[];
+m=max(n2c3(:,2));
+n2c1(:,2)=n2c1(:,2)+m+1;
+n2c3=[n2c3;n2c1];
+m=max(n2c3(:,2));
+n2c2(:,2)=n2c2(:,2)+m+1;
+n2c3=[n2c3;n2c2];
+dlmwrite('6.final',n2c3,'\t');

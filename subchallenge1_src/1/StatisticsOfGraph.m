@@ -1,0 +1,10 @@
+clear;
+path='../data/subchallenge1/';
+data = importdata(strcat(path,'1_ppi_anonym_v2.txt'));
+edges=data(:,3);
+edges=edges./max(edges);
+mean=sum(edges)/length(edges);
+variance=var(edges);
+rem=(edges<mean-(2*variance));
+data(rem,:)=[];
+dlmwrite('1.txt',data,'\t');

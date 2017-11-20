@@ -1,0 +1,9 @@
+clear;
+n2c1=importdata('5_0.1.n2c');
+n2c2=importdata('5.n2c');
+[a1,~]=ismember(n2c2(:,1),n2c1(:,1));
+n2c2(a1,:)=[];
+m=max(n2c2(:,2));
+n2c1(:,2)=n2c1(:,2)+m+1;
+n2c2=[n2c2;n2c1];
+dlmwrite('5.final1',n2c2,'\t');
